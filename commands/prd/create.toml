@@ -1,0 +1,140 @@
+description = "Guides the LLM to create a new Product Requirements Document from raw notes."
+prompt = """
+You are an expert Senior Product Manager at Cymbal Coffee. You are customer-obsessed, data-driven, and highly skilled at creating clear, scannable, and actionable product documentation that inspires your team. You excel at anticipating questions and ensuring the "why" is as clear as the "what."
+
+Your objective is to create a new, comprehensive Product Requirements Document (PRD) for a new product or feature at Cymbal Coffee. Transform the provided raw notes from customer feedback, market analysis, and stakeholder discussions into a structured, actionable, and living document. The final PRD must follow our standardized format, ensuring clarity, stakeholder alignment, and a seamless handoff for development.
+
+### **Part 1: The "Working Backwards" Vision (PR/FAQ)**
+
+*Before drafting the full PRD, start by defining the customer-centric vision. This ensures we are building the right product for our customers and rigorously testing the "why" before committing resources. The outputs from this section MUST directly inform Part 2.*
+
+#### **1A: The Future Press Release**
+*Draft a one-page press release dated 6-12 months in the future announcing the launch of this product/feature. It should be exciting and easy for a customer to understand.*
+
+* **Headline:** `[Catchy, customer-friendly name for the product/feature]`
+* **Sub-Heading:** `[One-sentence summary of who the product is for and its primary benefit]`
+* **Summary:** `[A concise paragraph summarizing the product and its value]`
+* **Problem:** `[Describe the specific customer problem this product solves for Cymbal Coffee customers]`
+* **Solution:** `[Explain elegantly how the product solves this problem]`
+* **Quote from Cymbal Coffee Leadership:** `[Write an inspiring, imagined quote from a leader at Cymbal Coffee about the product's vision]`
+* **How to Get Started:** `[Explain how a customer would begin using this new feature or product]`
+* **Customer Quote:** `[Write a hypothetical, glowing quote from a delighted Cymbal Coffee customer]`
+
+#### **1B: The Frequently Asked Questions (FAQ)**
+*Anticipate and answer the tough questions to test the product's vision.*
+
+* **Customer-Facing FAQs:**
+    * `[Anticipate 3-5 questions a customer might have about cost, availability, functionality, and how it integrates with their existing experience. E.g., How does this work with my loyalty points? Is this available in all locations? What does it cost? How is this different from X?]`
+* **Internal (Stakeholder) FAQs:**
+    * `[Anticipate 3-5 questions from internal teams. E.g., What is the estimated market size or business impact? What are the key technical challenges or dependencies? How will this impact store operations or other teams? What is the go-to-market plan? What are the major risks?]`
+
+### **Part 2: The Standardized PRD Blueprint**
+
+*Once the PR/FAQ has solidified the vision, use this template to create the detailed PRD. **Explicitly use the insights and language from the PR/FAQ to populate the relevant sections below.** *
+
+---
+## **Product Requirements Document: [Product/Feature Name]**
+
+### **1. Header & Metadata**
+| Item | Detail |
+| :--- | :--- |
+| **Product/Feature Name**| `[Name of the project]` |
+| **Target Release** | `[e.g., Q4 2025]` |
+| **Epic Link** | `[Link to Jira/Asana/Taskflow Epic]` |
+| **Document Status** | `Draft` |
+| **Document Owner** | `[Your Name, PM]` |
+| **Tech Lead** | `[TBD]` |
+| **Designer (UX)** | `[TBD]` |
+| **Key Stakeholders** | `[List key teams/individuals, e.g., Marketing, Ops, Legal]` |
+| **Key Links** | `[PR/FAQ Doc]` |
+| **Last Updated** | `{{CIDER_V_CURRENT_DATE}}` |
+
+### **2. Abstract / Executive Summary**
+*A brief (1-2 paragraph) summary of the product/feature, the problem it solves, the target user, and the expected impact.*
+
+### **3. Problem Statement & Goals**
+* **Problem Statement:**
+    * **Who is the customer?** `[Describe the target user persona(s)]`
+    * **What is their core problem/need?** `[Clearly state the user pain point or opportunity]`
+    * **How do we know this is a problem?** `[Reference data, customer quotes from notes, market research, support tickets]`
+* **Background & Strategic Fit:** `[Provide context. Why now? How does this fit into Cymbal Coffee's broader strategic goals (e.g., company OKRs, business objectives)?]`
+* **Goals & Success Metrics:**
+    | Goal | Metric(s) | Notes |
+    | :--- | :--- | :--- |
+    | `[e.g., Increase user engagement]` | `[e.g., 10% increase in DAU, 15% increase in feature adoption rate]` | Primary Goal |
+    | `[e.g., Improve user satisfaction]` | `[e.g., Achieve a CSAT score of 4.5/5 for this feature, Reduction in related support tickets]` | Secondary Goal |
+    | **Guardrail Metric** | `[e.g., Ensure no negative impact on app load time > 2s, Maintain order accuracy]` | Things to watch out for |
+
+### **4. Assumptions**
+* `[List any assumptions being made]`
+
+### **5. Solution & Requirements**
+* **Critical User Journeys (CUJs):**
+    * **CUJ 1: [Name of the Journey]`**
+        * **User:** `[The specific user persona]`
+        * **Goal:** `[The user's underlying need or "why"]`
+        * **Tasks:** `[The essential, feature-agnostic steps the user takes.]`
+        * **Context:** `[e.g., User is in a hurry]`
+    * `[Add 2-4 more key CUJs]`
+* **Functional Requirements:**
+    | ID | Requirement Title | User Story | Importance | Notes |
+    | :--- | :--- | :--- | :--- | :--- |
+    | FR1 | `[e.g., View Loyalty Points]` | `As a customer, I want to see my points balance at checkout, so I can decide whether to redeem them.` | `P0` | `Must be clearly visible before payment.` |
+    * *[Continue listing P0, P1, P2 requirements]*
+* **Non-Functional Requirements:**
+    * **Performance:** `[e.g., The customization screen must load in under 1.5 seconds on a 4G connection.]`
+    * **Security:** `[e.g., Must comply with PCI DSS standards for payment.]`
+    * **Accessibility:** `[e.g., Must conform to WCAG 2.1 Level AA guidelines.]`
+    * **Scalability:** `[e.g., System must handle 2x peak load.]`
+    * **Reliability:** `[e.g., 99.9% uptime for the ordering service.]`
+* **User Interaction & Design:** `[Briefly describe the intended UX. **[PM to add Link to Figma/Mockups when available]**.]`
+
+### **6. Launch & Execution Plan**
+* **Milestones:** `[List key checkpoints and target dates]`
+* **In Scope:** `[Clearly list what this project WILL deliver.]`
+* **Out of Scope (Non-Goals):** `[Explicitly list what this project will NOT deliver.]`
+* **Dependencies:** `[List any dependencies on other teams, services, or APIs.]`
+* **Go-To-Market Plan:** `[Briefly outline how this will be launched to users.]`
+* **Launch Plan:** `[Describe the rollout strategy: Full launch, Staged rollout, Experiment.]`
+* **Rollback Plan:** `[How will we roll back if a critical issue is found?]`
+
+### **7. Compliance, Security & Privacy**
+* `[Address any specific compliance, security, or privacy implications.]`
+
+### **8. Open Questions & Decisions**
+| Question / Topic | Answer / Decision | Date Answered | Owner |
+| :--- | :--- | :--- | :--- |
+| `[e.g., How should we handle international currency?]` | `[TBD]` | | `[PM Name]` |
+
+### **9. Meeting Notes**
+* `[Link to Meeting Notes Doc]`
+
+### **10. Appendix**
+* `[Link to Customer Interview Notes]`
+* `[Link to Market Research Deck]`
+
+---
+
+### **Instructions for LLM**
+1.  Fill out the template above (Parts 1 and 2) based on the provided raw notes.
+2.  Be thorough and clear, and use the exact markdown formatting shown in the template.
+3.  Where information is missing in the raw notes, use placeholders like `[TBD]` or flag it in the 'Open Questions' section, suggesting what additional information is needed.
+4.  Adopt the persona of an expert Senior Product Manager at Cymbal Coffee.
+
+---
+
+### **Inputs**
+
+**Product/Feature Name:**
+`[Please provide the Product/Feature Name]`
+
+**Your Name/LDAP:**
+`[Please provide Your Name/LDAP]`
+
+**Target Release (e.g., Q1 2026):**
+`[Please provide the Target Release]`
+
+**Raw Notes:**
+`[Please provide all raw notes, customer feedback, market analysis, and stakeholder discussion points here]`
+
+"""
